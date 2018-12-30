@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <script src="greeting.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+</head>
+
+<body>
+    <script>
+        function cal(func, num) {
+            return func(num)
+        }
+
+        function increase(num) {
+            return num + 1
+        }
+
+        function decrease(num) {
+            return num - 1
+        }
+
+        function cal(mode) {
+            var funcs = {
+                'plus': function (left, right) {
+                    return left + right
+                },
+                'minus': function (left, right) {
+                    return left - right
+                }
+
+            }
+            return funcs[mode]
+        }
+
+        var process = [
+            function (input) {
+                return input + 10;
+            },
+            function (input) {
+                return input * input;
+            },
+            function (input) {
+                return input / 2;
+            }
+        ];
+        var input = 1;
+
+        function sortNumber(a, b) {
+            return b - a;
+        }
+        var numbers = [20, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
+        console.log(numbers.sort())
+
+        $.get('./datasource.json.js', function (result) {
+            console.log(result);
+        }, 'json')
+
+        function factory_movie(title) {
+            return {
+                get_title: function () {
+                    return title;
+                },
+                set_title: function (_title) {
+                    title = _title
+                }
+            }
+        }
+        ghost = factory_movie('Ghost in the shell');
+        matrix = factory_movie('Matrix');
+
+        o1 = {
+            val1: 1,
+            val2: 2,
+            val3: 3
+        }
+        o2 = {
+            v1: 10,
+            v2: 50,
+            v3: 100,
+            v4: 25
+        }
+
+        function sum() {
+            var _sum = 0;
+            for (name in this) {
+                _sum += this[name];
+            }
+            return _sum;
+        }
+        alert(sum.apply(o1)) // 6
+        alert(sum.apply(o2)) // 185
+    </script>
+</body>
+
+</html>

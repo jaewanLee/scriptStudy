@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+
+</head>
+
+<body>
+    <script>
+        var person = {}
+        person.name = "egoing"
+        person.introduce = function () {
+            return 'My name is ' + this.name;
+        }
+        console.log(person.introduce())
+
+        function func() {
+            console.log("hell")
+        }
+
+        var funcThis = null;
+
+        function Func() {
+            funcThis = this;
+        }
+        //함수~this가 window
+        //functinoThis가 window가됨
+        var o1 = Func();
+        if (funcThis === window) {
+            document.write('window <br />');
+        }
+
+        //객체~this가 object
+        //functionThis가 object가됨
+        var o2 = new Func();
+        if (funcThis === o2) {
+            document.write('o2 <br />');
+        }
+
+        function Person(name) {
+            this.name = name;
+        }
+        Person.prototype.name = null;
+        Person.prototype.introduce = function () {
+            return 'My name is ' + this.name;
+        }
+
+        function Programmer(name) {
+            this.name = name;
+        }
+        Programmer.prototype = new Person();
+        Programmer.prototype.coding=function(){
+            return "Hello world"
+        }
+
+        var p1 = new Programmer('egoing');
+        document.write(p1.introduce() + "<br />");
+        document.write(p1.coding())
+
+        function Designer(name){
+            this.name=name;
+        }
+        Designer.prototype=new Person()
+        Designer.prototype.pretty=function(x){
+            document.write(x)
+            return document.write("pretty")
+        }
+
+        var designer=new Designer("jaewan:")
+        designer.pretty("hey"))
+    </script>
+</body>
+
+</html>

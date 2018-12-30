@@ -1,0 +1,29 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+
+</head>
+
+<body>
+    <script>
+        // function getRandomcity(arr){
+        //     var index=Math.random()
+        //     var multiNum=Math.floor(arr.length*Math.random())
+        //     return arr[multiNum]
+        // }
+        // console.log(getRandomcity(arr))
+
+        Array.prototype.getRandomValue = function () {
+            var index = Math.floor(this.length * Math.random());
+            return this[index]
+        }
+        var arry2=["jaewan","sangi","suwha"]
+        var arr = new Array("seould", "newYork", "ladarkh", "pusan", "Tsukuba")
+        console.log(arr.getRandomValue())
+        console.log(arry2.getRandomValue())
+    </script>
+
+</body>
+
+</html>
