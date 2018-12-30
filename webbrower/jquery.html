@@ -1,0 +1,68 @@
+<html>
+
+<head>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+    <style>
+        #demo{width:200px;float: left; margin-top:120px;}
+                #execute{float: left; margin:0; font-size:0.9em;}
+                #execute{padding-left: 5px}
+                #execute li{list-style: none}
+                #execute pre{border:1px solid gray; padding:10px;}
+                </style>
+</head>
+
+<body>
+    <script>
+        jQuery(document).ready(function ($) {
+            //tag이름이 body인걸 선택한다.
+            //앞에서 선택한 body태그 앞에 "<h1>~~"를 위치시킨다
+            //$는 jquery 함수
+            //$뒤에는 css선택자가 주로 들어온다.(ex-li/body/ul)
+            //.은 juquery함수가 return한게 객체라는 의미이고 그 객체는 jquery객체이다 
+            // juqeryy객세 뒤에 나오는 method는 jquery객체에 존재하는 property이다 
+            $('body').prepend('<h1>Hello world</h1>')
+        })
+    </script>
+
+    <ul id="demo">
+        <li class="active">HTML</li>
+        <li id="active">CSS</li>
+        <li class="active">JavaScript</li>
+    </ul>
+    <ul id="execute">
+        <li>
+            <pre>
+    var lis = document.getElementsByTagName('li');
+    for(var i=0; i&lt;lis.length; i++){
+        lis[i].style.color='red';   
+    </pre>
+            <pre>
+    $('li').css('color', 'red')     </pre>
+            <input type="button" value="execute" onclick="$('li').css('color', 'red')" />
+        </li>
+        <li>
+            <pre>
+    var lis = document.getElementsByClassName('active');
+    for(var i=0; i &lt; lis.length; i++){
+        lis[i].style.color='red';   
+    }</pre>
+            <pre>
+    $('.active').css('color', 'red')</pre>
+            <input type="button" value="execute" onclick="$('.active').css('color', 'red')" />
+        </li>
+        <li>
+            <pre>
+    var li = document.getElementById('active');
+    li.style.color='red';
+    li.style.textDecoration='underline';</pre>
+            <pre>
+    $('#active').css('color', 'red').css('textDecoration', 'underline');
+            </pre>
+            <input type="button" value="execute" onclick="$('#active').css('color', 'red').css('textDecoration', 'underline')" />
+        </li>
+    </ul>
+
+</body>
+
+</html>
