@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+</head>
+
+<body>
+    <input type="button" value="confirm" onclick="func_confirm()" />
+    <script>
+        function func_confirm(){
+                if(confirm('ok?')){
+                    alert('ok');
+                } else {
+                    alert('cancel');
+                }
+            }
+            // protocol : 통신규약
+            // host : url
+            // port : default 80->아무것도 출력이 안됨
+            // pathName : webserver 주소 
+            // search : get 값
+            // hash : #뒤의 값. 문서내의 특정한 위치를 지정하여 북마킹을 #을 이용하여 할 수 있음. 그 위치를 return 함
+            console.log(location.protocol, location.host, location.port, location.pathname, location.search, location.hash)
+
+            
+        </script>
+
+    <ul>
+        <li>
+            첫번째 인자는 새 창에 로드할 문서의 URL이다. 인자를 생략하면 이름이 붙지 않은 새 창이 만들어진다.<br />
+            <input type="button" onclick="open1()" value="window.open('demo2.html');" />
+        </li>
+        <li>
+            두번째 인자는 새 창의 이름이다. _self는 스크립트가 실행되는 창을 의미한다.<br />
+            <input type="button" onclick="open2()" value="window.open('demo2.html', '_self');" />
+        </li>
+        <li>
+            _blank는 새 창을 의미한다. <br />
+            <input type="button" onclick="open3()" value="window.open('demo2.html', '_blank');" />
+        </li>
+        <li>
+            창에 이름을 붙일 수 있다. open을 재실행 했을 때 동일한 이름의 창이 있다면 그곳으로 문서가 로드된다.<br />
+            <input type="button" onclick="open4()" value="window.open('demo2.html', 'ot');" />
+        </li>
+        <li>
+            세번재 인자는 새 창의 모양과 관련된 속성이 온다.<br />
+            <input type="button" onclick="open5()" value="window.open('demo2.html', '_blank', 'width=200, height=200, resizable=yes');" />
+        </li>
+    </ul>
+
+    <script>
+        //open은 <a>처럼 url을 실행시킴
+    function open1(){
+        window.open('main.html');
+    }
+    //_self는 자기자신의 탭에서 이동함
+    function open2(){
+        window.open('main.html', '_self');
+    }
+    //_blank는 새탭을 열어 이동함
+    function open3(){
+        window.open('main.html', '_blank');
+    }
+    //두번쨰 인자로 탭에 이름을 붙여서 그 탭을 계속 활용함
+    function open4(){
+        window.open('main.html', 'ot');
+    }
+    //새탭이아니라 창을 열어서 크기를 조절함
+    function open5(){
+        window.open('main.html', '_blank', 'width=200, height=200, resizable=no');
+    }
+    </script>
+
+    <input type="button" value="open" onclick="winopen();" />
+    <input type="text" onkeypress="winmessage(this.value)" />
+    <input type="button" value="close" onclick="winclose()" />
+    <script>
+        function winopen() {
+            //window.open의 return값은 새롭게 열린 창에대한 object값임
+            win = window.open('main.html', 'ot', 'width=300px, height=500px');
+        }
+        //innerText는 div tag내에 존재하는 text값임
+        function winmessage(msg) {
+            win.document.getElementById('message').innerText = msg;
+        }
+        //객체를 닫아줌. 이모든 window함수는 url의 host가 같을떄만 가능함. domain이 다르다면 open만 가능하고 수정/변경은 불가능하다
+        function winclose() {
+            win.close();
+        }
+    </script>
+</body>
+
+</html>

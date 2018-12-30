@@ -15,28 +15,29 @@
     inline load
     html코드에 javascript를 넣음, onclick내는 무조건 javascript 코드로 인식함
     -->
-    <input type="button" onclick="alert('hello')"
-    value="input type"/>
+    <input type="button" onclick="alert('hello')" value="input type" />
 
     <!--
         script type
         script태그내에서 id값을 이용하여 listenre를 등록시켜줌
     -->
-    <input type="button" id="hw" value="script type"/>
+    <input type="button" id="hw" value="script type" />
     <script type="text/javascript">
-    var hw=document.getElementById("hw")
-    hw.addEventListener('click',function(){
-        alert("hello world")
-    })
+        var hw = document.getElementById("hw")
+        hw.addEventListener('click', function () {
+            alert("hello world")
+        })
     </script>
     <!--외부에서 불러오기
     networ tap에서 load.js를 다운받은것을 확인 할 수 있다.
     html과 javscript를 완벽하게 분리할 수 있다.
     -->
-    <input type="button" id="sw" value="import outside"/>
+    <input type="button" id="sw" value="import outside" />
     <script src="./load.js"></script>
 
-
+    <div id="message">
+        initvalue
+    </div>
 
 </body>
 
