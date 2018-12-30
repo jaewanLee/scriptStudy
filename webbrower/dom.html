@@ -1,0 +1,43 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+</head>
+
+<body>
+    <!-- document를 찾는 방법중 id방식이 가장 효율이 좋다 -->
+    <ul>
+        <li class="active">HTML</li>
+        <li class="active">CSS</li>
+        <li>JavaScript</li>
+    </ul>
+    <ol>
+        <!-- id값은 반드시 하나만 있다. -->
+        <li id="olHtml">HTML</li>
+        <li class="querySelect">CSS</li>
+        <li>JavaScript</li>
+    </ol>
+    <script>
+        var ul = document.getElementsByTagName('ul')[0]
+        var lis = ul.getElementsByTagName('li')
+        for (var i = 0; i < lis.length; i++) {
+            lis[i].style.color = 'red'
+        }
+        var activeLi = document.getElementsByClassName("active")
+        for (var i = 0; i < activeLi.length; i++) {
+            activeLi[i].style.color = 'green'
+        }
+        var idLi = document.getElementById("olHtml")
+        idLi.style.color = "blue"
+
+        //조건에 맞는 하나의 선택자만 return함
+        var na = document.querySelector('li');
+        na.style.color = 'yellow';
+        //documentfind에서 .xx는 class이름을 찾는거임
+        var li = document.querySelector(".querySelect")
+        li.style.color = "red"
+    </script>
+
+</body>
+
+</html>
