@@ -1,0 +1,46 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+</head>
+
+<body>
+    <ul>
+        <li>HTML</li>
+        <li>CSS</li>
+        <li id="active">JavaScript</li>
+    </ul>
+    <script>
+        var li = document.getElementById('active');
+        //객체가 하나라면 htmlLiElement
+        console.log(li.constructor.name);
+        //복수개의 element가 있는 객체라면 htmlCollection~유사배열
+        var lis = document.getElementsByTagName('li');
+        console.log(lis.constructor.name);
+    </script>
+
+    <a id="anchor" href="http://opentutorials.org">opentutorials</a>
+    <ul>
+        <li>HTML</li>
+        <li>CSS</li>
+        <li id="list">JavaScript</li>
+    </ul>
+    <input type="button" id="button" value="button" />
+    <script>
+        var target = document.getElementById('list');
+        //htmlLiElement->li tag 객체
+        console.log(target.constructor.name);
+
+        var target = document.getElementById('anchor');
+        //htmlAnchorElement-><a> tag 객체
+        //a tag는 href가 반드시 존재함
+        console.log(target.constructor.name);
+
+        var target = document.getElementById('button');
+        //htmlInputelemnet->input tag 객체
+        //input에는 type과 value가 반드시 좀재함
+        console.log(target.constructor.name);
+    </script>
+</body>
+
+</html>
