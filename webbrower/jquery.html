@@ -25,7 +25,7 @@
         })
     </script>
 
-    <ul id="demo">
+    <!-- <ul id="demo">
         <li class="active">HTML</li>
         <li id="active">CSS</li>
         <li class="active">JavaScript</li>
@@ -61,7 +61,72 @@
             </pre>
             <input type="button" value="execute" onclick="$('#active').css('color', 'red').css('textDecoration', 'underline')" />
         </li>
+    </ul> -->
+<!-- 
+    <ul>
+        <li>html</li>
+        <li>css</li>
+        <li>JavaScript</li>
     </ul>
+
+    <script>
+        var li = $('li');
+        //map은 함수로 인자를 받는데, 해당 함수는
+        //각 LI들마다 모두 호출된다. 
+        //parameter index는 li내의 index, elem은 dom객체이다
+        //
+        li.map(function(index, elem){
+            console.log(index, elem);
+            $(elem).css('color', 'red');
+        })
+    </script> -->
+<!-- 
+    <li>html</li>
+    <li>css</li>
+    <li id="active" class="important current">JavaScript</li>
+</ul>
+<script>
+function loop(){
+    for(var i=0; i<active.classList.length; i++){
+        console.log(i, active.classList[i]);
+    }
+}
+// 클래스를 추가
+</script>
+<input type="button" value="DOMTokenList" onclick="console.log(active.classList);" />
+<input type="button" value="조회" onclick="loop();" />
+<input type="button" value="추가" onclick="active.classList.add('marked');" />
+<input type="button" value="제거" onclick="active.classList.remove('important');" />
+<input type="button" value="토글" onclick="active.classList.toggle('current');" />
+
+<a id="target" href="http://opentutorials.org">opentutorials</a>
+<script>
+var t = document.getElementById('target');
+console.log(t.getAttribute('href')); //http://opentutorials.org
+t.setAttribute('title', 'opentutorials.org'); // title 속성의 값을 설정한다.
+console.log(t.hasAttribute('title')); // true, title 속성의 존재여부를 확인한다.
+t.removeAttribute('title'); // title 속성을 제거한다.
+console.log(t.hasAttribute('title')); // false, title 속성의 존재여부를 확인한다.
+</script> -->
+
+<ul>
+    <li class="marked">html</li>
+    <li>css</li>
+    <li id="active">JavaScript
+        <ul>
+            <li>JavaScript Core</li>
+            <li class="marked">DOM</li>
+            <li class="marked">BOM</li>
+        </ul>
+    </li>
+</ul>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script>
+    // $( ".marked", "#active").css( "background-color", "red" );
+    // $( "#active", ".marked").css( "background-color", "red" );
+    // $( "#active").find (".marked").css( "background-color", "red" );
+    $("#active").find(".marked").css("background","blue")
+</script>
 
 </body>
 
