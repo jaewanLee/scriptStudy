@@ -1,0 +1,32 @@
+<html>
+
+<head>
+
+
+</head>
+<body>
+            <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+            <input type="text" id="target"/>
+            <input type="button" id="button"/>
+            <p id="innertext"></p>
+            <script>
+            
+            // $("#target").on("focus blur",function(event){
+            //     $("#innertext").html(event.type)
+            // })
+            var handler=function(e){
+                $("#innertext").html(event.type+Math.random())
+            }
+            // $("#target").on({
+            //     'focus' : handler,
+            //     'blur':handler
+            // })
+            $("#target").on("focus",handler).on("blur",handler)
+            $("#button").on("click",function(event){
+                $("#target").off("focus")
+            })
+            </script>
+
+            
+</body>
+</html>
