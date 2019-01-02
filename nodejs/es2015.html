@@ -1,0 +1,65 @@
+<html>
+<head>
+
+
+</head>
+
+<body>
+
+    <script>
+    const condition=true;
+    const promise=new Promise((resolve,reject)=>{
+        if(condition){
+            resolve("true")
+        }else{
+            reject("false")
+        }
+
+    })
+
+    // promise.then((message)=>{
+    //     console.log(message)
+    //     return new Promise((resolve,reject)=>{
+    //         reject(`to console second ${message}`)
+    //     })
+    // })
+    // //return 값의 catch를 붙일떄는 어떻게??
+    // .catch((err)=>{
+    //     console.log(err+" err on first catch")
+    // })
+    // //return 값으로 받은 promise에 then을 붙임
+    // .then((message2)=>{
+    //     console.log(message2)
+    //     return new Promise((resolve,reject)=>{
+    //         resolve(`to console third ${message2}`)
+    //     })
+    // })
+    // .catch((err)=>{
+    //     console.log("second err")
+    // })
+    // .then((message3)=>{
+    //     console.log(message3)
+    // })
+    // .catch((error)=>{
+    //     console.error("third err"+error)
+    // })
+
+    promise
+    .then((message)=>{
+        console.log("first then")
+        reject("err")
+    })
+    .catch((err)=>{
+        console.log("first err")
+        reject( "recovery erdr")
+    })
+    .then((message)=>{
+        console.log("second then "+message)
+    })
+    .catch((err)=>{
+        console.log("secnod err "+err)
+    })
+    </script>
+
+</body>
+</html>
