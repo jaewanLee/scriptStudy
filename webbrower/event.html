@@ -1,0 +1,68 @@
+<html>
+    <head>
+        <style>
+            html{border:5px solid red;padding:30px;}
+            body{border:5px solid green;padding:30px;}
+            fieldset{border:5px solid blue;padding:30px;}
+            input{border:5px solid black;padding:30px;}
+        </style>
+        <script>
+            window.addEventListener("DOMContentLoaded",function(){
+                console.log("document loaded")
+            })
+        </script>
+    </head>
+    <body>
+        <!-- <fieldset>
+            <legend>event propagation</legend>
+            <input type="checkbox" id="prevent" name="eventprevent" value="on"/>
+            <input type="button" id="target" value="target">          
+        </fieldset>
+        <script>
+        function handler(event){
+            if(document.getElementById("prevent").checked)
+            return false
+            var phases = ['capturing', 'target', 'bubbling']
+            //event.target.nodeName=사용자가 직접클릭한 내용(항상 nput)
+            //nodeName 해당 함수를 호출한 tag(호출여부에따라 input/fieldset/body...)
+            //phase는 이벤트를 hnadling할떄 evnetPhase가 captuinrg이면 1, bubbling이면 3, 마지막 child인 elemnet라면 eventPhase는 1을 갖음
+            console.log(event.target.nodeName, this.nodeName, phases[event.eventPhase-1]);
+        }
+        function stopHandler(event){
+            var phases = ['capturing', 'target', 'bubbling']
+            console.log(event.target.nodeName, this.nodeName, phases[event.eventPhase-1]);
+           //stopPropagation을 호출하면, capturing 또는 bubbling을 중지함. 즉 eventHandler 호출자체를 끊어버림
+            event.stopPropagation()
+        }
+        //마지막 filedset의 boolean값이 true몇 capturing false면 bubbling/
+        //default는 false 즉, bubbling
+        document.getElementById('target').addEventListener('click', handler, false);
+        document.querySelector('fieldset').addEventListener('click', stopHandler, false);
+        document.querySelector('body').addEventListener('click', stopHandler, false);
+        document.querySelector('html').addEventListener('click', handler, false);
+        </script> -->
+        <!-- <form id="target" action="main.html">
+            <label for="name">name</label> <input id="name" type="name" />
+            <input type="submit" />
+        </form>
+        <script>
+        var t = document.getElementById('target');
+        t.addEventListener('submit', function(event){
+            if(document.getElementById('name').value.length === 0){
+                alert('Name 필드의 값이 누락 되었습니다');
+                event.preventDefault();
+            }
+        });
+        </script> -->
+        <input id="target" type="name">
+        <script>
+        var textInput=document.getElementById("target")
+        textInput.addEventListener("blur",function(event){
+            console.log("blur")
+        })
+        textInput.addEventListener("focus",function(event){
+            console.log("focus")
+        })
+        </script>
+    </body>
+</html>
