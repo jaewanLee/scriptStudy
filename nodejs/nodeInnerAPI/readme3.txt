@@ -1,0 +1,1 @@
+i send my text little little little bit. we called this little particle as chunk
