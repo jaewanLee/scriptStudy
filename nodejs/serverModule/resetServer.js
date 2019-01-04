@@ -70,6 +70,3 @@ http.createServer((req, res) => {
     res.writeHead(404, "NOT Found")
     return res.end("NOT FOUND")
 })
-.listen(8080,()=>{
-    console.log("waiting on 8080")
-})
