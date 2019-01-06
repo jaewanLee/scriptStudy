@@ -1,4 +1,8 @@
 module.exports=(sequelize,DataType)=>{
+    //넘겨받는 파라미터중 첫번째는 서버에서 운영주잉 db를 관리하는 sequlize객체
+    //DataType sequelize 객체 정의부
+    //그래서 seqeulize를 사용하여 행동,값들을 정의하고
+    //정의부에서 사용될 type등은 DataType을 사용한다.
     sequelize.define("user",{
         email:{
             type:DataType.STRING(40),
