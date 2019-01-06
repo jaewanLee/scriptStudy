@@ -1,0 +1,11 @@
+{
+    "name":"jaewan_sns",
+    "version":"0.0.1",
+    "description":"basic sns service",
+    "main":"app.js",
+    "scripts": {
+        "start":"nodemon app"
+    },
+    "author": "ianLee",
+    "license": "MIT"
+}
