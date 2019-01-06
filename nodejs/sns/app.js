@@ -4,6 +4,7 @@ const morgan=require("morgan")
 const path=require("path")
 const session=require("express-session")
 const flash=require("connect-flash")
+require("dotenv").config();
 //server로 들어오는 요청들을 처리하기 위한 router
 const pageRouter=require("./routes/page")
 //서버 기본 객체
@@ -28,7 +29,8 @@ app.use(cookieParser("snssecret"))
 app.use(session({
     resave:false,
     saveUninitialized:false,
-    secret:"snssecret",
+    //dotenv를 사용해서 암호화키를 하드코딩하지않는다.
+    secret:process.env.COOKIE_SECRET,
     cookie:{
         httpOnly:true,
         secure:false,
