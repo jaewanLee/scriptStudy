@@ -1,0 +1,29 @@
+module.exports=(sequlize,Datatypes)=>{
+    //sequelize는 기본적으로 id를 primary Key로 갖기떄문에 추가로 입력할 필요가 없음
+    return sequlize.define("user",{
+        name:{
+            type:Datatypes.STRING(20),
+            allowNull:false,
+            unique:true,
+        },
+        age:{
+            type:Datatypes.INTEGER.UNSIGNED,
+            allowNull:false,
+        },
+        married:{
+            type:Datatypes.BOOLEAN,
+            allowNull:false,
+        },
+        comment:{
+            type:Datatypes.TEXT,
+            allowNull:true,
+        },
+        created_at:{
+            type:Datatypes.DATE,
+            allowNull:false,
+            defaultValue:sequlize.literal('now()')
+        }
+    },{
+        timestamps:false,
+    });
+}

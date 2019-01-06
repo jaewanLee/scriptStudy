@@ -8,8 +8,11 @@ var flash=require('connect-flash')
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var commentsRouter=require('./learn-sequilize/routes/users')
+var sequelize=require("./learn-sequilize/models").sequelize
 
 var app = express();
+sequelize.sync();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -23,6 +26,7 @@ app.use(function(req,res,next){
 
 //사용자 접속했을때, 접속 경로 및 시간/브라우저등을 로그로 제공(morgan)
 app.use(logger("dev"))
+app.user(express.static(path.join(__dirname,'public')))
 //body-Parser가 node에 내장되어있는형태로, json형식을 서버에서 수식할떄 사용
 app.use(express.json());
 //body-parser로 url을 이요해서 data를 보낼때 사용
@@ -49,6 +53,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('comments',commentsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -58,11 +63,15 @@ app.use(function(req, res, next) {
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
+  //이곳에서 지정한 message와 error값이 render에 전달된다.
   res.locals.message = err.message;
+  //app의 env를 키값으로 app객체에 접근한다. app객체로부터 이게 dev환경인지 확인해서 dev일떄만 err을 보여준다.
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // render the error page
   res.status(err.status || 500);
+  //render가 플랫폼 파일을 렌더링해주는 기능임.
+  //여기서 상단에 rednering대상을 pug를 사용한 view로 지정했기떄문에 view에 있는 error.pug파일을 불러온다.
   res.render('error');
 });
 
