@@ -1,8 +1,10 @@
 extends layout
 
+//layout.pug를 상속받음
 block content
   .timeline
     if user
+      //user객체가 있을경우 form을 만들어줌. id=twi-form
       div
         form#twit-form(action='/post' method='post' enctype='multipart/form-data')
           .input-group
@@ -15,18 +17,25 @@ block content
             input#img(type='file' accept='image/*')
             button#twit-btn.btn(type='submit') 짹짹
     .twits
+      //user객체와 상관없이 id=hashtag-form을 만들어줌
       form#hashtag-form(action='/post/hashtag')
         input(type='text' name='hashtag' placeholder='태그 검색')
         button.btn 검색
+      //렌더링시 넘겨받은 twits값이 있을경우 반복문을 돌려줌
       for twit in twits
         .twit
           input.twit-user-id(type='hidden' value=twit.user.id)
           input.twit-id(type='hidden' value=twit.id)
           .twit-author= twit.user.nick
+          //변수선언은 앞에 - 을 붙여줌
+          //follow라는 변수에는 유저여부와 following한 id를 확인하여 twit의 의 유저아이디가 following한 값과 일치하는지 확인한다.
+          //즉, 사용자가 현재 twit을 folloing하는지 확인하는것
           -const follow = user && user.Followings.map(f => f.id).includes(twit.user.id);
+          //follow가 userid와 일치하지 않은 팔로우하기 버튼을 만들어줌.
           if user && user.id !== twit.user.id && !follow
             button.twit-follow 팔로우하기
           .twit-content= twit.content
+          //twit에 이미지 값이 있으면 img썸네일을 띄워줌
           if twit.img
             .twit-img
               img(src=twit.img alt='섬네일')
