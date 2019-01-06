@@ -1,11 +1,15 @@
 {
-    "name":"jaewan_sns",
-    "version":"0.0.1",
-    "description":"basic sns service",
-    "main":"app.js",
+    "name": "jaewan_sns",
+    "version": "0.0.1",
+    "description": "basic sns service",
+    "main": "app.js",
     "scripts": {
-        "start":"nodemon app"
+        "start": "nodemon app"
     },
     "author": "ianLee",
-    "license": "MIT"
+    "license": "MIT",
+    "dependencies": {
+        "mysql2": "^1.6.4",
+        "sequelize": "^4.42.0"
+    }
 }
