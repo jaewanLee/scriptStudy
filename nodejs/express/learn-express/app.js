@@ -10,8 +10,10 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var commentsRouter=require('./learn-sequilize/routes/users')
 var sequelize=require("./learn-sequilize/models").sequelize
+var connect=require("mongoose")
 
 var app = express();
+connect();
 sequelize.sync();
 
 // view engine setup
