@@ -5,6 +5,19 @@ const {User}=require("../models")
 
 const router=express.Router()
 
+//kakao로 들어오게되면 kakao전략 을실행해줌
+//kakao로그인은 자체적으로 로그인 과정이 있기떄문에 우리가 req,res등을 직접호출해줄필요가 없음
+router.get("/kakao",passport.authenticate("kakao"))
+//kakao전략 실행중 아이디가 없을떄 실행되는 callback
+//로그인 실패했을때 redirectURL만 넣어주면 로그인 및 회원가입후 내용들을 kakao에서 알아서해주고 우리는
+//response만 받아서 처리하면됨.
+//response처리는 kakaostrategy에서 진행함
+router.get("/kakao/callback",passport.authenticate("kakao",{
+    failrueRedirect:"/",
+}),(req,res)=>{
+    res.redirect("/");
+})
+
 //page가 기본으로설정되어있기떄문에 auth내의 path는 auth/join || auth.login같은 형태가됨
 router.post("/join",isNotLoggedIn,async (req,res,next)=>{
     const {email,nick,password}=req.body;

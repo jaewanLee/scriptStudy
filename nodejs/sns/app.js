@@ -8,6 +8,7 @@ const flash=require("connect-flash")
 require("dotenv").config();
 //server로 들어오는 요청들을 처리하기 위한 router
 const pageRouter=require("./routes/page")
+const authRouter=require("./routes/auth")
 //DB를 위해 sequeilize 객체를 가져온다.
 const {sequelize}=require("./models")
 const passportConfig=require("./passport")
@@ -49,6 +50,7 @@ app.use(passport.session());
 
 //현재 서버에 "/"로 접속할경우 pageRouter로 보내준다.
 app.use("/",pageRouter)
+app.use("/auth",authRouter)
 //여기까지왔다는것은 다른 미들웨어에서 처리를 못해줬다는거임.
 //위에서 "/"path에 대해서만 router를 지정해주었기 떄문에, "/"가 아닌 다른 path를 넘길경우 404에러로 보냄
 app.use((req,res,next)=>{
