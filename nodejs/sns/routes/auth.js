@@ -29,6 +29,10 @@ router.post("/join",isNotLoggedIn,async (req,res,next)=>{
 })
 
 router.post("/login",isNotLoggedIn,(req,res,next)=>{
+    //첫번쨰 파라미터로 local을 넘겨주게되면 localStrategy에 해당하는 전략이 실행됨
+        //passport.autheticate가 localStrategy의 done이라고보면됨. localStrategy에서 정한 전략이 완료되면 done을통해 두번쨰 파라미터에서 정의해준 내용을 콜백해줌.
+    //전략에 성공할경우error는 null이되고 user정보가 넘어오지만 오류가있따면 error에 값을 넣어줌
+    //info는 주로 전략에 실패할경우 에러메세지 출력을 위해 info내부에 {message:"값"}의 형태로넣어줌
     passport.authenticate("local",(authError,user,info)=>{
         if(authError){
             console.error(authError);
