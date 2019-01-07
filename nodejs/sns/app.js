@@ -9,6 +9,8 @@ require("dotenv").config();
 //server로 들어오는 요청들을 처리하기 위한 router
 const pageRouter=require("./routes/page")
 const authRouter=require("./routes/auth")
+const postRouter=require("./routes/post")
+const userRouter=require("./routes/user")
 //DB를 위해 sequeilize 객체를 가져온다.
 const {sequelize}=require("./models")
 const passportConfig=require("./passport")
@@ -27,6 +29,7 @@ app.use(morgan("dev"))
 //정적파일이 있는 위치를 설정한다.
 //static을 지정한 이후로는 정적파일을 load할때 public에 접근하지않고 javascript등의 필요한 파일들에 접근할 수 있다.
 app.use(express.static(path.join(__dirname,"public")))
+app.use("/img",express.static(path.join(__dirname,"uploads")))
 app.use(express.json())
 //body-parser로 url을 이용해서 data를 보낼때 사용. body-parser를 사용하지 않을꺼면 extended를 true로해주면된다.
 app.use(express.urlencoded({extended:false}))
@@ -51,6 +54,8 @@ app.use(passport.session());
 //현재 서버에 "/"로 접속할경우 pageRouter로 보내준다.
 app.use("/",pageRouter)
 app.use("/auth",authRouter)
+app.use("/post",postRouter)
+app.use("/user",userRouter)
 //여기까지왔다는것은 다른 미들웨어에서 처리를 못해줬다는거임.
 //위에서 "/"path에 대해서만 router를 지정해주었기 떄문에, "/"가 아닌 다른 path를 넘길경우 404에러로 보냄
 app.use((req,res,next)=>{
