@@ -29,6 +29,29 @@ router.get("/join", isNotLoggedIn, (req, res) => {
     })
 })
 
+router.get("/hashtag",async (req,res,next)=>{
+    const query=req.query.hashtag;
+    if(!query){
+        return res.redirect("/")
+    }
+    try{
+        const hastag=await Hashtag.find({where:{title:query}})
+        let posts=[];
+        if(hastag){
+            posts=await hashtag.getPosts({include:[{model:User}]})
+        }
+        return res.render("main",{
+            title:`${query} | NodeBird`,
+            user:req.user,
+            twits:posts,
+        })
+    }
+    catch(error){
+        console.error(error)
+        return next(error);
+    }
+})
+
 router.get("/", (req, res, next) => {
     Post.findAll({
             include: {
