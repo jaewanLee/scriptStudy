@@ -3,15 +3,18 @@ const cookieParser=require("cookie-parser")
 const morgan=require("morgan")
 const path=require("path")
 const session=require("express-session")
+const passport=require("passport")
 const flash=require("connect-flash")
 require("dotenv").config();
 //server로 들어오는 요청들을 처리하기 위한 router
 const pageRouter=require("./routes/page")
 //DB를 위해 sequeilize 객체를 가져온다.
 const {sequelize}=require("./models")
+const passportConfig=require("./passport")
 //서버 기본 객체
 const app=express();
 sequelize.sync();
+passportConfig(passport)
 //views는 epxress와 함꼐 사용할 템플릿이 있는경우 템플릿의 위치를 지정한다.
 app.set("views",path.join(__dirname,"views"))
 //view,즉 템플릿 엔진에 사용될 엔진 이름을 지정한다. 여기서는 pug
@@ -41,6 +44,8 @@ app.use(session({
 }));
 //flash를 사용할 경우 지정
 app.use(flash())
+app.use(passport.initialize());
+app.use(passport.session());
 
 //현재 서버에 "/"로 접속할경우 pageRouter로 보내준다.
 app.use("/",pageRouter)
