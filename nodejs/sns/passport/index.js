@@ -15,10 +15,21 @@ module.exports=(passport)=>{
     //이전에 저장했던 id를 받아서 정보를 조회하고 그 값에따라 처리를 해줍니다.
     //
     passport.deserializeUser((id,done)=>{
-        User.find({where:{id}})
+        User.find({
+            where:{id},
+            include:[{
+                model:user,
+                attributes:['id','nick'],
+                as:"Followers",
+            },{
+                model:User,
+                attributes:["id","nick"],
+                as:"Followings"
+            }],
+        })
         //done의 user에 아이디값을 저장합니다.req.user를 통해 가져올수있음.
         .then(user=>done(null,user))
-        .catch(err=>done(err));
+        .catch(err=>done(err))
     });
 
     local(passport);
