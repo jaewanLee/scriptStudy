@@ -64,4 +64,34 @@ router.post("/",isLoggedIn,upload2.none(),async (req,res,next)=>{
     }
 })
 
+router.get("/hashtag",async (req,res,next)=>{
+    const query=req.query.hashtag;
+    if(!query){
+        return res.redirect("/")
+    }
+    try{
+        const hastag=await Hashtag.find({
+            where:{
+                title:query
+            }
+        })
+        let poasts=[];
+        if(hastag){
+            poasts=await Hashtag.find({
+                include: [{
+                    model:User
+                }]
+            })
+        }
+        return res.render("main",{
+            title:`${query} | NodeBird`,
+            user:req.user,
+            twits:poasts,
+        })
+    }catch(error){
+        console.error(error)
+        return next(error)
+    }
+})
+
 module.exports=router;

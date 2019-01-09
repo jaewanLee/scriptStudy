@@ -59,6 +59,7 @@ app.use("/user",userRouter)
 //여기까지왔다는것은 다른 미들웨어에서 처리를 못해줬다는거임.
 //위에서 "/"path에 대해서만 router를 지정해주었기 떄문에, "/"가 아닌 다른 path를 넘길경우 404에러로 보냄
 app.use((req,res,next)=>{
+    console.log("err status",req.body)
     const err=new Error("notFound")
     err.status=404;
     next(err);
